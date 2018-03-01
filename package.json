@@ -1,0 +1,25 @@
+{
+  "name": "vueletron",
+  "version": "1.0.0",
+  "description": "electron desktop app is easier",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachmanzz/vuelectron.git"
+  },
+  "keywords": [
+    "webpack",
+    "vue",
+    "template",
+    "electron",
+    "desktop"
+  ],
+  "author": "Muhammad Abdurrahman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rachmanzz/vuelectron/issues"
+  },
+  "homepage": "https://github.com/rachmanzz/vuelectron#readme"
+}
