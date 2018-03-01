@@ -23,6 +23,6 @@ global.Views = (Vs) => {
 module.exports = {
   window : {width: 1000, height: 600, frame: true },
   run: (win) => {
-    win.loadURL(Views('Index'))
+    win.loadURL(Views('index'))
   }
 }
