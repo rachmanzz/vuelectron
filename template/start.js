@@ -15,7 +15,7 @@ global.Gets = (Im) => {
 
 global.Views = (Vs) => {
   return url.format({
-          pathname: path.join(__dirname, 'Views/'+ Vs +'.html'),
+          pathname: path.join(__dirname, 'views/'+ Vs +'.html'),
           protocol: 'file:',
           slashes: true
       })
