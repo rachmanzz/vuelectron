@@ -23,9 +23,13 @@
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     {{/lint}}
-    "build": "node build/build.js && electron ."
+    "build": "node build/build.js && electron .",
+    "publish": "node build/build.js && node config/publish.js && electron-packager ./publish"
   },
   "dependencies": {
+    "rimraf": "^2.6.2",
+    "uglify-es": "^3.3.9",
+    "fs-extra": "^5.0.0",
     "vue": "^2.5.2"{{#router}},
     "vue-router": "^3.0.1"{{/router}}
   },
@@ -117,7 +121,9 @@
     "portfinder": "^1.0.13",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "electron": "^1.7.8",
+    "electron-packager": "^9.1.0"
   },
   "engines": {
     "node": ">= 6.0.0",
