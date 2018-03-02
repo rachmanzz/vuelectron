@@ -1,8 +1,8 @@
 const Datastore = require('nedb')
-
+const config = require('config/config')
+const db = typeof config.database !== '' ? new Datastore({ filename: v }) : new Datastore()
 module.exports = class Datastore {
     constructor(files) {
-        const db = typeof files !== 'undefined' ? new Datastore({ filename: files }) : new Datastore()
         db.loadDatabase(err => {if(err) throw err})
         this.db = db
         this.whereis = {}
@@ -10,12 +10,15 @@ module.exports = class Datastore {
 
     data (mdata) {
         this.mdata = mdata
+        return this
     }
 
     insert (callback) {
         this.db.insert(this.mdata, (err, result) => {
             callback(!err, result)
+            this.data = null
         })
+
     }
     reset () {
         this.whereis = {}
@@ -31,9 +34,10 @@ module.exports = class Datastore {
             if (arg === 'not') this.whereis[key] = {$ne: data}
             if (arg === 'exists') this.whereis[key] = {$exists: data}
             if (arg === 'regex') this.whereis[key] = {$regex: data}
-            return
+            return this
         }
         this.whereis[key] = arg
+        return this
     }
     get (callback) {
         db.find(this.whereis, (err, data) => {
