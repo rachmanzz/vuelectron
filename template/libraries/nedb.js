@@ -1,3 +1,5 @@
+// not working for npm publish
+
 const Datastore = require('nedb')
 const config = require('config/config')
 const db = typeof config.database !== '' ? new Datastore({ filename: v }) : new Datastore()
