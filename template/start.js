@@ -1,6 +1,6 @@
 const path = require('path')
 const url = require('url')
-global._CONTROL_ACCESS_$$ = {} // register global control broadcaster
+global._CONTROL_ACCESS_$$ = {} // register global control
 global.Gets = (Im) => {
   const regex = /([\w]+):([-\w/]+)/
     if (!regex.test(Im)) {
@@ -12,17 +12,8 @@ global.Gets = (Im) => {
     const fullUrl = './' + base + '/' + file
     return require(fullUrl)
 }
-
+const app = Gets('config:app')
 global.Views = (Vs) => {
-  return url.format({
-          pathname: path.join(__dirname, 'views/'+ Vs +'.html'),
-          protocol: 'file:',
-          slashes: true
-      })
+  return url.format({ pathname: path.join(__dirname, app.rootview + '/' + Vs + '.html'), protocol: 'file:', slashes: true })
 }
-module.exports = {
-  window : {width: 1000, height: 600, frame: true },
-  run: (win) => {
-    win.loadURL(Views('index'))
-  }
-}
+module.exports = { window : app.window, run: (win) => { win.loadURL(Views(app.index)) }}

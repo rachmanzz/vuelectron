@@ -1,8 +1,7 @@
 // not working for npm publish
-
 const Datastore = require('nedb')
-const config = require('config/config')
-const db = typeof config.database !== '' ? new Datastore({ filename: v }) : new Datastore()
+const app = Gets('config:app')
+const db = typeof app.database !== '' ? new Datastore({ filename: app.database }) : new Datastore()
 module.exports = class Datastore {
     constructor(files) {
         db.loadDatabase(err => {if(err) throw err})
@@ -42,23 +41,34 @@ module.exports = class Datastore {
         return this
     }
     get (callback) {
-        db.find(this.whereis, (err, data) => {
+        this.db.find(this.whereis, (err, data) => {
             callback(!err, data)
             this.reset()
         })
     }
     getAll (callback) {
-        db.find({}, (err, data) => {
+        this.db.find({}, (err, data) => {
             callback(!err, data)
             this.reset()
         })
     }
 
     getOne (callback) {
-        db.findOne(this.whereis, (err, data) => {
+        this.db.findOne(this.whereis, (err, data) => {
             callback(!err, data)
             this.reset()
         })
+    }
+
+    delete (callback) {
+      db.remove(tnis.whereis, {}, (err, number) => {callback(!err, number)})
+    }
+
+    deleteAll (callback) {
+      db.remove(tnis.whereis, { multi: true }, (err, number) => {callback(!err, number)})
+    }
+    remove (callback) {
+      db.remove({}, { multi: true }, (err, number) => {callback(!err, number)})
     }
     raw () {
         return this.db
