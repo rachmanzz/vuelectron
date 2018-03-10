@@ -1,7 +1,7 @@
 'use strict'
 // Template version: {{ template_version }}
 // see http://vuejs-templates.github.io/webpack for documentation.
-
+const app = require('./app')
 const path = require('path')
 
 module.exports = {
@@ -46,12 +46,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../views/index.html'),
+    index: path.resolve(__dirname, '../' + app.rootview + '/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../views'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsRoot: path.resolve(__dirname, '../' + app.rootview),
+    assetsSubDirectory: app.assetsubdir,
+    assetsPublicPath: app.assetspublicpath,
 
     /**
      * Source Maps

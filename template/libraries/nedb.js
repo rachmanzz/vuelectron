@@ -19,7 +19,6 @@ module.exports = class Datastore {
             callback(!err, result)
             this.data = null
         })
-
     }
     reset () {
         this.whereis = {}
@@ -61,14 +60,14 @@ module.exports = class Datastore {
     }
 
     delete (callback) {
-      db.remove(tnis.whereis, {}, (err, number) => {callback(!err, number)})
+      this.db.remove(tnis.whereis, {}, (err, number) => {callback(!err, number)})
     }
 
     deleteAll (callback) {
-      db.remove(tnis.whereis, { multi: true }, (err, number) => {callback(!err, number)})
+      this.db.remove(tnis.whereis, { multi: true }, (err, number) => {callback(!err, number)})
     }
     remove (callback) {
-      db.remove({}, { multi: true }, (err, number) => {callback(!err, number)})
+      this.db.remove({}, { multi: true }, (err, number) => {callback(!err, number)})
     }
     raw () {
         return this.db
